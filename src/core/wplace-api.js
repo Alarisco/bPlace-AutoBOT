@@ -1,7 +1,6 @@
 import { fetchWithTimeout } from "./http.js";
 import { log } from "./logger.js";
 import { safeParseResponse } from './json.js';
-// bPlace no usa Turnstile ni pawtect - sistema simplificado
 
 const BASE = "https://bplace.org";
 
@@ -147,7 +146,6 @@ export async function postPixel(coords, colors, turnstileToken, tileX, tileY) {
       return { status: 400, json: { error: 'Invalid coords/colors format' }, success: false };
     }
     
-    // bPlace: sistema simplificado - solo coords, colors y t: "skip"
     const body = JSON.stringify({ colors: colorsNorm, coords: coordsNorm, t: "skip" });
     
     const controller = new AbortController();
@@ -246,7 +244,6 @@ export async function postPixelBatchImage(tileX, tileY, coords, colors, turnstil
       return { status: 400, json: { error: 'Invalid coords/colors format' }, success: false, painted: 0 };
     }
     
-    // bPlace: sistema simplificado - solo coords, colors y t: "skip"
     const body = JSON.stringify({ 
       colors: colorsNorm, 
       coords: coordsNorm, 

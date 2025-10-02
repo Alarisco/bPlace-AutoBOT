@@ -1,4 +1,3 @@
-// bPlace no usa turnstile
 import { postPixelBatchImage } from '../core/wplace-api.js';
 import { generateStraightLine, generateMultipleColors } from "./coords.js";
 import { sleep, sleepWithCountdown } from "../core/timing.js";
@@ -110,7 +109,6 @@ export async function paintOnce(cfg, state, setStatus, flashEffect, getSession, 
   // Mensaje neutro (pintado lineal); no mencionar radio
   setStatus(`🌾 Pintando ${pixelCount} píxeles desde base (${cfg.BASE_X},${cfg.BASE_Y}) tile(${cfg.TILE_X},${cfg.TILE_Y})...`, 'status');
   
-  // bPlace no usa turnstile
   let t = "skip";
   const r = await postPixelBatchImage(cfg.TILE_X, cfg.TILE_Y, coords, colors, t);
 

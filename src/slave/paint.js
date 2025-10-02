@@ -1,5 +1,4 @@
 // Painting helpers for Slave: modularized from index.js to keep logic reusable and testable
-// bPlace no usa turnstile
 import { postPixelBatchImage } from "../core/wplace-api.js";
 
 // Paint a single tile batch; coords are local flat [x,y,...] within the tile
@@ -22,7 +21,6 @@ export async function paintBatch({ tileX, tileY, coordsFlat, colors, sendToMaste
     const subCoordsFlat = coordsFlat.slice(start, end);
 
     let t = null;
-    t = "skip"; // bPlace no usa turnstile
 
     const result = await postPixelBatchImage(tileX, tileY, subCoordsFlat, subColors, t);
     lastStatus = result?.status || 0;

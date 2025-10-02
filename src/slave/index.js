@@ -14,13 +14,11 @@ import { runImage } from "../image/index.js";
 // import { runGuard } from "../guard/index.js"; // UI completa (no usar en headless)
 // (Guard modular) detección de colores y análisis ahora en Guard/guard.js
 import { ensureGuardColors, handleGuardData as modularHandleGuardData, getPreviewData as modularGetPreviewData, startGuardAutomation as modularStartAutomation, applyGuardConfig as modularApplyGuardConfig, manualCheck as guardManualCheck, manualRepair as guardManualRepair, toggleWatchMode as guardToggleWatchMode, clearGuardState as guardClearState } from "./Guard/guard.js";
-// bPlace no usa turnstile - imports eliminados
 // NUEVO: API para enviar lotes de píxeles
 // import { postPixelBatchImage } from "../core/wplace-api.js"; // now handled by paint.js helper
 import { paintBatch as modPaintBatch, repairPixels as modRepairPixels } from "./paint.js";
 // Para conocer el tamaño de tile y normalizar coords locales
 import { GUARD_DEFAULTS } from "../guard/config.js";
-import { prepareTokensForBot } from "../core/warmup.js";
 
 // Globals del navegador
 const { setInterval, clearInterval } = window;
@@ -98,7 +96,6 @@ class WPlaceSlave {
   this.masterServerUrl = this.normalizeWsUrl(masterUrl);
     log('🔗 Inicializando WPlace Slave...');
     
-        // bPlace no usa turnstile - sistema global no necesario
     
     await this.connectToMaster();
     this.startTelemetryLoop();
@@ -287,7 +284,6 @@ class WPlaceSlave {
         log(`⭐ Slave marcado como favorito: ${this.isFavorite}`);
         this.updateUI();
         if (this.isFavorite) {
-          try { await prepareTokensForBot('Slave-Favorite'); } catch {}
           try { await ensureGuardColors(); } catch {}
           // Enviar paleta disponible inmediatamente si existe
           try { this.sendAvailableColorsIfAny(); } catch {}
@@ -308,7 +304,6 @@ class WPlaceSlave {
         log(`⭐ Estado de favorito actualizado: ${this.isFavorite}`);
         this.updateUI();
         if (this.isFavorite) {
-          try { await prepareTokensForBot('Slave-Favorite'); } catch {}
           try { await ensureGuardColors(); } catch {}
           // Enviar paleta disponible inmediatamente si existe
           try { this.sendAvailableColorsIfAny(); } catch {}
@@ -641,7 +636,6 @@ class WPlaceSlave {
           start: async () => {
             log('🎨 Iniciando bot de imagen...');
             window.__wplaceBot = { ...window.__wplaceBot, imageRunning: true };
-            try { await prepareTokensForBot('Image'); } catch {}
             await runImage();
           },
           stop: () => {
@@ -661,7 +655,6 @@ class WPlaceSlave {
             // Headless guard: no UI, solo análisis y reparación vía órdenes externas
             log('🛡️ Iniciando Guard headless (sin UI)...');
             window.__wplaceBot = { ...window.__wplaceBot, guardRunning: true };
-            try { await prepareTokensForBot('Guard'); } catch {}
             // Asegurar guardState básico sin lanzar UI completa
             try {
               if (typeof window !== 'undefined' && !window.guardState) {
@@ -691,7 +684,6 @@ class WPlaceSlave {
           start: async () => {
             log('🌾 Iniciando bot de farming...');
             window.__wplaceBot = { ...window.__wplaceBot, farmRunning: true };
-            try { await prepareTokensForBot('Farm'); } catch {}
             await runFarm();
           },
           stop: () => {
@@ -774,7 +766,6 @@ class WPlaceSlave {
     }
     
     try {
-  try { await prepareTokensForBot(this.currentMode || 'Bot'); } catch {}
       this.isRunning = true;
       await this.currentBot.start();
       

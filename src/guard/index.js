@@ -7,7 +7,6 @@ import { createLogWindow } from "../log_window/index.js";
 import { saveProgress, loadProgress, hasProgress } from "./save-load.js";
 import { initializeLanguage, getSection, t } from "../locales/index.js";
 import { isPaletteOpen, findAndClickPaintButton } from "../core/dom.js";
-import { prepareTokensForBot } from "../core/warmup.js";
 import { sleep } from "../core/timing.js";
 import { guardOverlay } from "./overlay.js";
 import { sessionStart, sessionEnd, sessionPing, trackEvent } from "../core/metrics/client.js";
@@ -22,15 +21,6 @@ export async function runGuard() {
   
   // Inicializar sistema de idiomas
   initializeLanguage();
-  // Preparar tokens con la nueva ventana de captura
-  try {
-    const result = await prepareTokensForBot('Auto-Guard');
-    if (!result.success) {
-      log('⚠️ [guard] Tokens no preparados, continuando con interceptor activo');
-    }
-  } catch (error) {
-    log('❌ [guard] Error preparando tokens:', error);
-  }
   
   // Cargar configuración previa desde localStorage (si existe)
   try {

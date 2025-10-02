@@ -1,7 +1,6 @@
 import { log } from "../core/logger.js";
 import { sleep } from "../core/timing.js";
 import { postPixelBatchImage, getSession } from "../core/wplace-api.js";
-import { ensureToken } from "../core/turnstile.js";
 import { imageState, IMAGE_DEFAULTS } from "./config.js";
 import { t } from "../locales/index.js";
 import { pixelsPainted } from "../core/metrics/client.js";
@@ -224,7 +223,6 @@ export async function processImage(imageData, startPosition, onProgress, onCompl
   
   // *** NUEVO: Generar token al inicio del proceso ***
   try {
-    // bPlace no usa turnstile, siempre usamos "skip"
     const initialToken = "skip";
     if (!initialToken) {
       log("⚠️ No se pudo generar token inicial, continuando con flujo normal");
@@ -464,7 +462,6 @@ export async function paintPixelBatch(batch, providedToken = null) {
     }
 
   // Obtener un único token (reutilizar si se pasa desde nivel superior)
-  const token = "skip"; // bPlace no usa turnstile
 
     let totalPainted = 0;
     for (const { coords, colors, tx, ty } of byTile.values()) {
@@ -544,7 +541,7 @@ export async function paintPixelBatchWithRetry(batch, onProgress) {
 
   // Obtener un token una sola vez antes de los reintentos
   try {
-    token = await ensureToken();
+    token = "skip";
   } catch (e) {
     log('⚠️ No se pudo obtener token inicial, se intentará en el primer intento:', e.message);
   }
@@ -553,7 +550,6 @@ export async function paintPixelBatchWithRetry(batch, onProgress) {
     try {
       // Si no tenemos token todavía (fallo al inicio) intentar generarlo ahora
       if (!token) {
-        token = "skip"; // bPlace no usa turnstile
       }
 
       const result = await paintPixelBatch(batch, token);
@@ -568,7 +564,7 @@ export async function paintPixelBatchWithRetry(batch, onProgress) {
       if (result.status === 403) {
         log('🔐 403 recibido: invalidando y regenerando token para reintento inmediato');
         try {
-          token = await ensureToken(true); // forzar nuevo token
+          token = "skip"; // forzar nuevo token
           // Reintentar el mismo intento (no incrementar backoff extra)
           continue;
         } catch (regenErr) {
@@ -629,7 +625,7 @@ export async function paintPixelBatchWithRetry(batch, onProgress) {
         if (/403/.test(error?.message || '')) {
           try {
             log('🔐 Excepción potencial de token, regenerando...');
-            token = await ensureToken(true);
+            token = "skip";
             continue; // Reintentar mismo intento
           } catch (regenErr) {
             log('❌ Falló regeneración tras excepción 403:', regenErr.message);
@@ -696,7 +692,6 @@ export async function paintPixelBatch_ORIGINAL(batch) {
       }
     }
     
-    // bPlace no usa turnstile
     const token = "skip";
     
     // Enviar píxeles usando el formato correcto

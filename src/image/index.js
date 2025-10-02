@@ -8,7 +8,6 @@ import { showGuardDialog, saveGuardJSON, showConfirmDialog } from "./safe-guard-
 import { getSession } from "../core/wplace-api.js";
 import { initializeLanguage, getSection, t, getCurrentLanguage } from "../locales/index.js";
 import { isPaletteOpen, autoClickPaintButton } from "../core/dom.js";
-import { prepareTokensForBot } from "../core/warmup.js";
 import "./plan-overlay-blue-marble.js";
 import { sessionStart, sessionPing, sessionEnd, reportError } from "../core/metrics/client.js";
 import { getMetricsConfig } from "../core/metrics/config.js";
@@ -26,15 +25,6 @@ export async function runImage() {
   window.__wplaceBot = { ...window.__wplaceBot, imageRunning: true };
   console.log('[WPA-Image] 🔧 Estado global actualizado');
 
-  // Preparar tokens con la nueva ventana de captura
-  try {
-    const result = await prepareTokensForBot('Auto-Image');
-    if (!result.success) {
-      log('⚠️ [image] Tokens no preparados, continuando con interceptor activo');
-    }
-  } catch (error) {
-    log('❌ [image] Error preparando tokens:', error);
-  }
 
   let currentUserInfo = null; // Variable global para información del usuario
   let originalFetch = window.fetch; // Guardar fetch original globalmente

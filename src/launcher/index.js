@@ -11,8 +11,6 @@ import { runFarm } from "../farm/index.js";
 import { runImage } from "../image/index.js";
 import { runGuard } from "../guard/index.js";
 import { runSlave } from "../slave/index.js";
-// Importar el sistema de turnstile para compartir tokens
-import { ensureToken, invalidateToken, getPawtectToken, getFingerprint } from "../core/turnstile.js";
 
 // Función para ejecutar bots localmente con acceso completo al sistema de tokens
 async function executeLocalBot(botType) {
@@ -41,13 +39,6 @@ async function executeLocalBot(botType) {
       window.__wplaceBot = {};
     }
     
-    // Asegurar que el sistema de turnstile esté disponible globalmente
-    window.__WPA_TURNSTILE_SYSTEM__ = {
-      ensureToken,
-      invalidateToken,
-      getPawtectToken,
-      getFingerprint
-    };
     
     // Ejecutar el bot correspondiente
     switch (botType) {
