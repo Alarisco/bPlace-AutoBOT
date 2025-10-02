@@ -1,0 +1,21 @@
+name: Feature
+description: Propón una mejora
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problema
+      description: ¿Qué problema resuelve?
+    validations: { required: true }
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Propuesta
+      description: Describe la solución ideal
+      placeholder: "Quiero que el bot haga..."
+    validations: { required: true }
+  - type: textarea
+    id: context
+    attributes:
+      label: Contexto adicional

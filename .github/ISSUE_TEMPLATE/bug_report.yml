@@ -1,0 +1,30 @@
+name: Bug
+description: Reporta un fallo
+labels: [bug]
+body:
+  - type: textarea
+    id: desc
+    attributes:
+      label: Descripción
+      description: ¿Qué pasa y qué esperabas?
+    validations: { required: true }
+  - type: textarea
+    id: steps
+    attributes:
+      label: Pasos para reproducir
+      placeholder: "1. ...\n2. ...\n3. ..."
+    validations: { required: true }
+  - type: input
+    id: version
+    attributes:
+      label: Versión/Commit (tag o SHA)
+  - type: textarea
+    id: env
+    attributes:
+      label: Entorno
+      description: Navegador, SO, etc.
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs / Capturas
+      render: shell

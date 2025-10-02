@@ -1,0 +1,9 @@
+name: Pregunta
+description: Duda o soporte de uso
+labels: [question]
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: ¿Cuál es tu duda?
+    validations: { required: true }
