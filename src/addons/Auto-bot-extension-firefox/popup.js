@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Usar timeout para evitar que se quede colgado
             const messagePromise = runtime.sendMessage({
                 action: 'executeScript',
-                url: 'https://raw.githubusercontent.com/Alarisco/WPlace-AutoBOT/refs/heads/main/Auto-Launcher.js',
+                url: 'https://raw.githubusercontent.com/Alarisco/bPlace-AutoBOT/refs/heads/main/Auto-Launcher.js',
                 tabId: tab.id
             });
 

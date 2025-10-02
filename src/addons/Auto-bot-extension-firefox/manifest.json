@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "bPlace AutoBot Launcher",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "AutoBot Launcher for Firefox - bPlace.org",
   "permissions": [
     "activeTab",

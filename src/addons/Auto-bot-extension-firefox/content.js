@@ -84,7 +84,7 @@ if (window.location.hostname === 'bplace.org') {
             // Enviar mensaje al background script para ejecutar el script
             const response = await runtime.sendMessage({
                 action: 'executeScript',
-                url: 'https://raw.githubusercontent.com/Alarisco/WPlace-AutoBOT/refs/heads/main/Auto-Launcher.js'
+                url: 'https://raw.githubusercontent.com/Alarisco/bPlace-AutoBOT/refs/heads/main/Auto-Launcher.js'
             });
 
             if (response && response.success) {
