@@ -461,7 +461,7 @@ export async function paintPixelBatch(batch, providedToken = null) {
       bucket.colors.push(p.color.id || p.color.value || 1);
     }
 
-  // Obtener un único token (reutilizar si se pasa desde nivel superior)
+    const token = "skip";
 
     let totalPainted = 0;
     for (const { coords, colors, tx, ty } of byTile.values()) {
@@ -548,10 +548,6 @@ export async function paintPixelBatchWithRetry(batch, onProgress) {
 
   for (let attempt = 1; attempt <= maxAttempts; attempt++) {
     try {
-      // Si no tenemos token todavía (fallo al inicio) intentar generarlo ahora
-      if (!token) {
-      }
-
       const result = await paintPixelBatch(batch, token);
 
       if (result.success) {
