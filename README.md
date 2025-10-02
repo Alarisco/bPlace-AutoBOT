@@ -18,24 +18,6 @@
 </p>
 
 
-<!-- Badges de Chrome y Firefox -->
-<p align="center">
-  <a href="https://chromewebstore.google.com/detail/kjbodcmljdmjmcjdhoghcclejpmgfeoj?utm_source=item-share-cb" target="_blank" rel="noopener noreferrer">
-    <img
-      src="https://developer.chrome.com/static/docs/webstore/branding/image/mPGKYBIR2uCP0ApchDXE.png"
-      alt="Available in the Chrome Web Store"
-      height="70"
-    />
-  </a>
-  &nbsp;&nbsp;
-  <a href="https://addons.mozilla.org/es-ES/firefox/addon/wplace-autobot-launcher/" target="_blank" rel="noopener noreferrer">
-    <img
-      src="https://logos-world.net/wp-content/uploads/2021/08/Firefox-Logo.png"
-      alt="Firefox Add-on"
-      height="70"
-    />
-  </a>
-</p>
 
 
 <!-- Novedad: enlace al repositorio WPlace Master Server -->
@@ -54,21 +36,11 @@
 
 ---
 
-## 🚀 Quick Start (Recommended: Extension)
 
-Install the official Chrome extension and launch the bot with one click:
-
-1. Open the Chrome Web Store listing:
-   https://chromewebstore.google.com/detail/kjbodcmljdmjmcjdhoghcclejpmgfeoj?utm_source=item-share-cb
-2. Click "Add to Chrome"
-3. Pin the extension (optional) and open WPlace
-4. Click the icon → choose the mode (Launcher, Guard, Image, Farm)
-
-> The extension always serves the latest bot version automatically.
 
 ---
 
-## 📦 Alternative: Bookmarklet Injection
+## Bookmarklet Injection
 If you prefer not to install the extension, you can use a bookmarklet instead.
 Create a new bookmark and paste one of the code snippets below as the URL.
 
