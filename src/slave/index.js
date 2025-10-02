@@ -14,8 +14,7 @@ import { runImage } from "../image/index.js";
 // import { runGuard } from "../guard/index.js"; // UI completa (no usar en headless)
 // (Guard modular) detección de colores y análisis ahora en Guard/guard.js
 import { ensureGuardColors, handleGuardData as modularHandleGuardData, getPreviewData as modularGetPreviewData, startGuardAutomation as modularStartAutomation, applyGuardConfig as modularApplyGuardConfig, manualCheck as guardManualCheck, manualRepair as guardManualRepair, toggleWatchMode as guardToggleWatchMode, clearGuardState as guardClearState } from "./Guard/guard.js";
-// Importar el sistema de turnstile para compartir tokens
-import { ensureToken, invalidateToken, getPawtectToken, getFingerprint } from "../core/turnstile.js";
+// bPlace no usa turnstile - imports eliminados
 // NUEVO: API para enviar lotes de píxeles
 // import { postPixelBatchImage } from "../core/wplace-api.js"; // now handled by paint.js helper
 import { paintBatch as modPaintBatch, repairPixels as modRepairPixels } from "./paint.js";
@@ -99,13 +98,7 @@ class WPlaceSlave {
   this.masterServerUrl = this.normalizeWsUrl(masterUrl);
     log('🔗 Inicializando WPlace Slave...');
     
-    // Asegurar que el sistema de turnstile esté disponible globalmente
-    window.__WPA_TURNSTILE_SYSTEM__ = {
-      ensureToken,
-      invalidateToken,
-      getPawtectToken,
-      getFingerprint
-    };
+        // bPlace no usa turnstile - sistema global no necesario
     
     await this.connectToMaster();
     this.startTelemetryLoop();

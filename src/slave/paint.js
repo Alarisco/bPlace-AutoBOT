@@ -1,6 +1,6 @@
 // Painting helpers for Slave: modularized from index.js to keep logic reusable and testable
+// bPlace no usa turnstile
 import { postPixelBatchImage } from "../core/wplace-api.js";
-import { ensureToken } from "../core/turnstile.js";
 
 // Paint a single tile batch; coords are local flat [x,y,...] within the tile
 export async function paintBatch({ tileX, tileY, coordsFlat, colors, sendToMaster, shouldAbort }) {
@@ -22,7 +22,7 @@ export async function paintBatch({ tileX, tileY, coordsFlat, colors, sendToMaste
     const subCoordsFlat = coordsFlat.slice(start, end);
 
     let t = null;
-    try { t = await ensureToken(); } catch {}
+    t = "skip"; // bPlace no usa turnstile
 
     const result = await postPixelBatchImage(tileX, tileY, subCoordsFlat, subColors, t);
     lastStatus = result?.status || 0;

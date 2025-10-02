@@ -8,7 +8,7 @@ export const GUARD_DEFAULTS = {
   PIXELS_PER_BATCH: 10, // Menos que Image para ser más sutil
   MAX_PIXELS_PER_BATCH: 9999, // Nuevo máximo para tamaño de lote
   MIN_CHARGES_TO_WAIT: 20, // Cargas mínimas a esperar antes de continuar
-  BACKEND_URL: "https://backend.wplace.live",
+  BACKEND_URL: "https://bplace.org",
   PROTECTION_PATTERN: "random" // Patrón por defecto
 };
 

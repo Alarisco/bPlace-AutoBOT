@@ -1,7 +1,8 @@
 import { getSection } from '../locales/index.js';
 
 export const IMAGE_DEFAULTS = {
-  SITEKEY: '0x4AAAAAABpqJe8FO0N84q0F',
+  // bPlace no usa Turnstile - dejamos el campo por compatibilidad pero no se usa
+  SITEKEY: null, // '0x4AAAAAABpqJe8FO0N84q0F' (WPlace)
   COOLDOWN_DEFAULT: 31000,
   TRANSPARENCY_THRESHOLD: 100,
   WHITE_THRESHOLD: 250,

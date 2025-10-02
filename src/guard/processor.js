@@ -1,8 +1,8 @@
 import { log } from "../core/logger.js";
 import { getSession } from "../core/wplace-api.js";
-// Usamos el mismo flujo de pintado que el bot de imagen para evitar 403
+// Usamos el mismo flujo de pintado que el bot de imagen
 import { postPixelBatchImage } from '../core/wplace-api.js';
-import { ensureToken, getCachedToken } from "../core/turnstile.js";
+// bPlace no usa turnstile
 import { guardState, GUARD_DEFAULTS } from "./config.js";
 import { sleep } from "../core/timing.js";
 import { getPixelsByPattern } from "./patterns.js";
@@ -1469,9 +1469,8 @@ function debouncedAnalysisSummary({ total, incorrect, missing }) {
 // Pintar múltiples píxeles en un solo tile
 async function paintPixelBatch(tileX, tileY, coords, colors) {
   try {
-    // Reutilizar token de turnstile si está cacheado (no forzar nuevo)
-    let token = getCachedToken();
-    if (!token) token = await ensureToken();
+    // bPlace no usa turnstile
+    let token = "skip";
 
     // Sanitizar coordenadas (igual que image/painter.js)
     const sanitized = [];

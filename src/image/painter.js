@@ -224,8 +224,8 @@ export async function processImage(imageData, startPosition, onProgress, onCompl
   
   // *** NUEVO: Generar token al inicio del proceso ***
   try {
-    log("🔑 Generando token Turnstile al inicio del proceso...");
-    const initialToken = await ensureToken();
+    // bPlace no usa turnstile, siempre usamos "skip"
+    const initialToken = "skip";
     if (!initialToken) {
       log("⚠️ No se pudo generar token inicial, continuando con flujo normal");
     } else {
@@ -464,7 +464,7 @@ export async function paintPixelBatch(batch, providedToken = null) {
     }
 
   // Obtener un único token (reutilizar si se pasa desde nivel superior)
-  const token = providedToken || await ensureToken();
+  const token = "skip"; // bPlace no usa turnstile
 
     let totalPainted = 0;
     for (const { coords, colors, tx, ty } of byTile.values()) {
@@ -553,7 +553,7 @@ export async function paintPixelBatchWithRetry(batch, onProgress) {
     try {
       // Si no tenemos token todavía (fallo al inicio) intentar generarlo ahora
       if (!token) {
-        token = await ensureToken();
+        token = "skip"; // bPlace no usa turnstile
       }
 
       const result = await paintPixelBatch(batch, token);
@@ -696,8 +696,8 @@ export async function paintPixelBatch_ORIGINAL(batch) {
       }
     }
     
-    // Obtener token de Turnstile
-    const token = await ensureToken();
+    // bPlace no usa turnstile
+    const token = "skip";
     
     // Enviar píxeles usando el formato correcto
     const response = await postPixelBatchImage(tileX, tileY, coords, colors, token);

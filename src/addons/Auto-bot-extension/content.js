@@ -1,6 +1,6 @@
 /* global chrome */
-// Verificar si estamos en wplace.live
-if (window.location.hostname === 'wplace.live') {
+// Verificar si estamos en bplace.org
+if (window.location.hostname === 'bplace.org') {
 
     // Variables de control del injector
     let _injectorReady = false;

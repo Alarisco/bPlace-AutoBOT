@@ -1,5 +1,7 @@
 {
-  "name": "wplace-autobot",
+  "name": "bplace-autobot",
+  "version": "1.0.0",
+  "description": "Bot automatizado para bPlace.org - Adaptado de WPlace-AutoBOT",
   "private": true,
   "type": "module",
   "scripts": {

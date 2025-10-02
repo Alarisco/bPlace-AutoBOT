@@ -1,6 +1,7 @@
 // Configuración por defecto para WPlace AutoFarm
 export const FARM_DEFAULTS = {
-  SITEKEY: '0x4AAAAAABpqJe8FO0N84q0F', // Turnstile sitekey (ajústalo si cambia)
+  // bPlace no usa Turnstile - dejamos el campo por compatibilidad pero no se usa
+  SITEKEY: null, // '0x4AAAAAABpqJe8FO0N84q0F' (WPlace - no usado en bPlace)
   TILE_X: 1086,
   TILE_Y: 1565,
   TILE_SIZE: 3000,         // Tiles son de ~3000x3000 según investigación

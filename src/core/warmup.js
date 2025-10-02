@@ -1,22 +1,20 @@
 import { log } from "./logger.js";
-import { getFingerprint, getPawtectToken } from "./turnstile.js";
-// Eliminado token-capture-window y token-interceptor (flujo ahora totalmente pasivo/dinámico)
-import { seedPawtect } from './pawtect.js';
+import { getFingerprint } from "./turnstile.js";
 import { ensureFingerprint } from './fingerprint.js';
+// bPlace: No usa pawtect ni turnstile, solo autenticación por cookie
 
 /**
  * Función principal para preparar tokens antes de iniciar un bot
- * Muestra la ventana de captura si es necesario
+ * En bPlace esto es simplificado: solo usa cookies de sesión
  * @param {string} botName - Nombre del bot que se está iniciando
- * @returns {Promise<Object>} - Resultado de la captura
+ * @returns {Promise<Object>} - Resultado de la preparación
  */
 export async function prepareTokensForBot(botName = "Bot") {
-  log(`🚀 [${botName}] Preparando tokens (modo simplificado)`);
-  // Precarga no bloqueante
+  log(`🚀 [${botName}] Preparando bot para bPlace (autenticación por cookie)`);
+  // Solo asegurar fingerprint por compatibilidad
   try { ensureFingerprint({}); } catch {}
-  try { seedPawtect(); } catch {}
-  // No hay UI: devolvemos estado actual
-  return { success: true, fingerprint: getFingerprint(), pawtectToken: getPawtectToken(), skipped: true };
+  // bPlace no requiere tokens adicionales
+  return { success: true, fingerprint: getFingerprint(), pawtectToken: null, skipped: true };
 }
 
 /**
@@ -50,15 +48,15 @@ export async function ensureFingerprintReady(context = "bot", options = {}) {
 
 /**
  * Verifica si tenemos tokens disponibles sin mostrar UI
+ * En bPlace solo verifica fingerprint y sesión
  * @returns {Object} - Estado de los tokens
  */
 export function checkTokensAvailable() {
   const fingerprint = getFingerprint();
-  const pawtectToken = getPawtectToken();
   return {
     hasFingerprint: !!fingerprint,
-    hasPawtectToken: !!pawtectToken,
-  interceptorReady: true,
-  allReady: !!fingerprint && !!pawtectToken
+    hasPawtectToken: false, // bPlace no usa pawtect
+    interceptorReady: true,
+    allReady: !!fingerprint // En bPlace solo necesitamos fingerprint
   };
 }

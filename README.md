@@ -4,7 +4,11 @@
   </a>
 </p>
 
-<h1 align="center">WPLACE-AUTOBOT</h1>
+<h1 align="center">BPLACE-AUTOBOT</h1>
+
+<p align="center">
+  <em>Adaptado para bPlace.org - Basado en WPlace-AutoBOT</em>
+</p>
 
 <!-- Botón Buy Me a Coffee -->
 <p align="center">

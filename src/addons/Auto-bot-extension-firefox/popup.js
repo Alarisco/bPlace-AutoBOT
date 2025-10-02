@@ -35,9 +35,9 @@ document.addEventListener('DOMContentLoaded', function() {
             const tab = tabs_result[0];
             console.log('Tab obtained:', tab);
 
-            // Verificar si estamos en wplace.live
-            if (!tab.url.includes('wplace.live')) {
-                throw new Error('You must be on wplace.live to use this extension');
+            // Verificar si estamos en bplace.org
+            if (!tab.url.includes('bplace.org')) {
+                throw new Error('You must be on bplace.org to use this extension');
             }
 
             status.textContent = 'Sending message to background...';
@@ -98,8 +98,8 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        if (tabs_result[0] && !tabs_result[0].url.includes('wplace.live')) {
-            status.textContent = '⚠️ Go to wplace.live to use the extension';
+        if (tabs_result[0] && !tabs_result[0].url.includes('bplace.org')) {
+            status.textContent = '⚠️ Go to bplace.org to use the extension';
             executeBtn.disabled = true;
         }
     }).catch(function(error) {

@@ -10,8 +10,8 @@ if (typeof browser !== "undefined" && !window.chrome) {
 // Usar la API apropiada según el navegador
 const runtime = typeof browser !== "undefined" ? browser.runtime : chrome.runtime;
 
-// Verificar si estamos en wplace.live
-if (window.location.hostname === 'wplace.live') {
+// Verificar si estamos en bplace.org
+if (window.location.hostname === 'bplace.org') {
 
     // Variables de control del injector
     let _injectorReady = false;
