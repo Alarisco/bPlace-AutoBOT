@@ -613,6 +613,12 @@ function comparePixels(originalPixels, currentPixels) {
   
   // Importar función de comparación
   const compareColors = (color1, color2) => {
+    // IMPORTANTE: Verificar colorId primero para distinguir transparente (colorId=0) de negro
+    if (color1.colorId === 0 || color2.colorId === 0) {
+      // Si alguno es transparente, deben ser ambos transparentes para ser iguales
+      return color1.colorId === color2.colorId;
+    }
+    
     if (comparisonMethod === 'lab') {
       // Usar comparación LAB (implementada en processor.js)
       const lab1 = rgbToLab(color1.r, color1.g, color1.b);

@@ -493,8 +493,21 @@ export async function analyzeAreaPixels(area, options = {}) {
                 const b = data[pixelIndex + 2];
                 const a = data[pixelIndex + 3];
                 
-                if (a > 0) { 
-                  // Píxel visible - encontrar color más cercano
+                // Umbral de transparencia: alpha < 128 se considera transparente
+                if (a < 128) { 
+                  // Píxel transparente o semi-transparente - guardarlo como color ID 0
+                  pixelMap.set(`${globalX},${globalY}`, {
+                    r: null, g: null, b: null, // RGB null para transparente
+                    colorId: 0, // ID 0 = transparente
+                    globalX,
+                    globalY,
+                    localX,
+                    localY,
+                    tileX,
+                    tileY
+                  });
+                } else {
+                  // Píxel visible (opaco) - encontrar color más cercano
                   const closestColor = findClosestColor(r, g, b, guardState.availableColors);
                   if (closestColor) {
                     pixelMap.set(`${globalX},${globalY}`, {
@@ -508,18 +521,6 @@ export async function analyzeAreaPixels(area, options = {}) {
                       tileY
                     });
                   }
-                } else {
-                  // Píxel transparente (a = 0) - guardarlo como color ID 0
-                  pixelMap.set(`${globalX},${globalY}`, {
-                    r: null, g: null, b: null, // RGB null para transparente
-                    colorId: 0, // ID 0 = transparente
-                    globalX,
-                    globalY,
-                    localX,
-                    localY,
-                    tileX,
-                    tileY
-                  });
                 }
               }
             }
@@ -650,7 +651,8 @@ export async function analyzeAreaForErasing(area) {
                 const b = data[pixelIndex + 2];
                 const a = data[pixelIndex + 3];
                 
-                if (a > 0) { // Píxel visible
+                // Umbral de transparencia: solo píxeles con alpha >= 128 se consideran visibles
+                if (a >= 128) { // Píxel visible (opaco o semi-opaco)
                   const closestColor = findClosestColor(r, g, b, guardState.availableColors);
                   if (closestColor && closestColor.id !== 0) { // Solo píxeles NO transparentes
                     pixelsToErase.set(`${globalX},${globalY}`, {
