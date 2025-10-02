@@ -1,6 +1,6 @@
-# WPlace AutoBOT - Extensión para Firefox
+# bPlace AutoBOT - Extensión para Firefox
 
-Esta es la versión de la extensión WPlace AutoBOT compatible con Firefox, adaptada desde la versión original de Chrome.
+Esta es la versión de la extensión bPlace AutoBOT compatible con Firefox, adaptada para trabajar con bplace.org.
 
 ## Diferencias principales con la versión de Chrome
 
@@ -24,7 +24,7 @@ Esta es la versión de la extensión WPlace AutoBOT compatible con Firefox, adap
 1. **Empaquetado manual:**
    ```bash
    cd /ruta/a/Auto-bot-extension-firefox
-   zip -r ../wplace-autobot-firefox.xpi *
+   zip -r ../bplace-autobot-firefox.xpi *
    ```
 
 2. **Instalación del XPI:**
@@ -38,7 +38,7 @@ Esta es la versión de la extensión WPlace AutoBOT compatible con Firefox, adap
 1. **Crear el paquete XPI:**
    ```bash
    # Desde la carpeta Auto-bot-extension-firefox
-   zip -r wplace-autobot-firefox.xpi . -x "*.md" "*.txt"
+   zip -r bplace-autobot-firefox.xpi . -x "*.md" "*.txt"
    ```
 
 2. **Firmar la extensión (para distribución pública):**

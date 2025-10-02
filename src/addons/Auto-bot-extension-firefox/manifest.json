@@ -1,11 +1,11 @@
 {
   "manifest_version": 2,
-  "name": "WPlace AutoBot Launcher",
+  "name": "bPlace AutoBot Launcher",
   "version": "1.1.2",
-  "description": "AutoBot Launcher for Firefox",
+  "description": "AutoBot Launcher for Firefox - bPlace.org",
   "permissions": [
     "activeTab",
-    "https://wplace.live/*",
+    "https://bplace.org/*",
     "https://raw.githubusercontent.com/*"
   ],
   "background": {
@@ -14,14 +14,14 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://wplace.live/*"],
+      "matches": ["https://bplace.org/*"],
       "js": ["content.js"],
       "run_at": "document_end"
     }
   ],
   "browser_action": {
     "default_popup": "popup.html",
-    "default_title": "WPlace AutoBot Launcher",
+    "default_title": "bPlace AutoBot Launcher",
     "default_icon": {
       "16": "icons/icon16.png",
       "32": "icons/icon32.png",
@@ -37,12 +37,8 @@
   },
   "browser_specific_settings": {
     "gecko": {
-      "id": "wplace-autobot@alarisco.com",
-      "strict_min_version": "79.0",
-      "data_collection_permissions": {
-        "telemetry": false,
-        "studies": false
-      }
+      "id": "bplace-autobot@alarisco.com",
+      "strict_min_version": "79.0"
     }
   }
 }

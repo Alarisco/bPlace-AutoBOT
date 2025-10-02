@@ -43,17 +43,21 @@ export async function getSession() {
 
 export async function checkHealth() {
   try {
-    const response = await fetch(`${BASE}/health`, {
+    // bPlace.org no tiene endpoint /health, usar /me para verificar estado
+    const response = await fetch(`${BASE}/me`, {
       method: 'GET',
       credentials: 'include'
     });
     
     if (response.ok) {
-      const health = await response.json();
+      const data = await response.json();
       return {
-        ...health,
+        up: true,
+        database: true, // Si /me responde, la DB está funcionando
+        uptime: 'Online', // bPlace no proporciona uptime
         lastCheck: Date.now(),
-        status: 'online'
+        status: 'online',
+        user: data // Incluir datos del usuario para debug
       };
     } else {
       return {
