@@ -28,14 +28,6 @@
   </a> – servidor central para coordinar bots con interfaz web.
 </p>
 
-  <a href="https://addons.mozilla.org/es-ES/firefox/addon/bplace-autobot-launcher/" target="_blank" rel="noopener noreferrer">
-    <img
-      src="https://logos-world.net/wp-content/uploads/2021/08/Firefox-Logo.png"
-      alt="Firefox Add-on"
-      height="70"
-    />
-  </a>
-</p>
 
 <!-- Texto en otro párrafo centrado -->
 <p align="center">
@@ -52,6 +44,14 @@
     />
   </a>
   &nbsp;&nbsp;
+    <a href="https://addons.mozilla.org/es-ES/firefox/addon/bplace-autobot-launcher/" target="_blank" rel="noopener noreferrer">
+    <img
+      src="https://logos-world.net/wp-content/uploads/2021/08/Firefox-Logo.png"
+      alt="Firefox Add-on"
+      height="70"
+    />
+  </a>
+</p>
 
 ---
 
