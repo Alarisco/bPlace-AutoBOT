@@ -35,8 +35,15 @@
 </p>
 
 ---
-
-
+<p align="center">
+  <a href="https://chromewebstore.google.com/detail/paimfceojoebnbndjcbilhigbjoljnni?utm_source=item-share-cb" target="_blank" rel="noopener noreferrer">
+    <img
+      src="https://developer.chrome.com/static/docs/webstore/branding/image/mPGKYBIR2uCP0ApchDXE.png"
+      alt="Available in the Chrome Web Store"
+      height="70"
+    />
+  </a>
+  &nbsp;&nbsp;
 
 ---
 
